@@ -1,4 +1,4 @@
-# GOSU - Github User Search App
+# GUSA - Github User Search App
 
 Search github users by nickname
 
