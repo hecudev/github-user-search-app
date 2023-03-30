@@ -4,7 +4,7 @@ Search github users by nickname
 
 - Fast search 🔎
 - Beautiful loader 🔄
-- Support for any type (octocat, @octocat, https://github.com/octocat) 🔥
+- Support for any format (octocat, @octocat, https://github.com/octocat) 🔥
 
 Try it now https://hecudev.github.io/github-user-search-app/
 

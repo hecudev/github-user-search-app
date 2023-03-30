@@ -4,13 +4,11 @@
   box-sizing: border-box;
 }
 
-/* Убираем внутренние отступы */
 ul[class],
 ol[class] {
   padding: 0;
 }
 
-/* Убираем внешние отступы */
 body,
 h1,
 h2,
@@ -199,11 +197,11 @@ body {
 .preloader {
   position: absolute;
   opacity: 0;
-  width: 102px;
-  height: 102px;
+  width: 52px;
+  height: 52px;
   left: 50%;
   top: 50%;
-  min-height: 102px;
+  min-height: 52px;
   transform: translateX(-50%) translateY(-50%);
 }
 .preloader .small-circle {
@@ -212,6 +210,11 @@ body {
   transform-origin: 50%;
   animation: 1s draw-small infinite alternate;
 }
+
+.not-availabel {
+  opacity: 0.5;
+}
+
 @keyframes draw-small {
   0% {
     stroke-dashoffset: 0;

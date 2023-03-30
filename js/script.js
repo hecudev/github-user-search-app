@@ -1,41 +1,18 @@
-document.addEventListener("keyup", (e) => {
-  if (e.keyCode === 13) {
-    document.getElementById("submit").click();
-  }
-});
-
-function formatDate(dateString) {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const date = new Date(dateString);
-  const day = date.getDate();
-  const month = months[date.getMonth()];
-  const year = date.getFullYear();
-  return `Joined ${day} ${month} ${year}`;
-}
+const link = "https://api.github.com/users/";
 
 async function getUser() {
-  document.getElementById("preloader").style.opacity = 1;
   let username = document.getElementById("input").value;
+  if (!username) {
+    return;
+  }
   if (username.includes("@")) {
     username = username.slice(1);
   }
   if (username.includes("https://github.com/")) {
     username = username.slice(19);
   }
-  await fetch("https://api.github.com/users/" + username)
+  document.getElementById("preloader").style.opacity = 1;
+  await fetch(link + username)
     .then((r) => {
       if (r.ok) {
         return r.json();
@@ -92,21 +69,60 @@ function updateUser(json) {
   document.getElementById("location").textContent = json.location
     ? json.location
     : "Not Availabel";
+  json.location
+    ? (document.getElementById("location").className = "")
+    : (document.getElementById("location").className = "not-availabel");
   document.getElementById("blog").textContent = json.blog
     ? json.blog
     : "Not Availabel";
-  json.blog ? (document.getElementById("blog").href = json.blog) : null;
+  json.blog
+    ? (document.getElementById("blog").href = json.blog)
+    : document.getElementById("blog").removeAttribute("href");
+  json.blog
+    ? (document.getElementById("blog").className = "")
+    : (document.getElementById("blog").className = "not-availabel");
   document.getElementById("twitter").textContent = json.twitter_username
     ? "@" + json.twitter_username
     : "Not Availabel";
   json.twitter_username
     ? (document.getElementById("twitter").href =
         "https://twitter.com/" + json.twitter_username)
-    : null;
+    : document.getElementById("twitter").removeAttribute("href");
+  json.twitter_username
+    ? (document.getElementById("twitter").className = "")
+    : (document.getElementById("twitter").className = "not-availabel");
   document.getElementById("company").textContent = json.company
     ? json.company
     : "Not Availabel";
   json.company
-    ? (document.getElementById("company").href = json.company)
-    : null;
+    ? (document.getElementById("company").className = "")
+    : (document.getElementById("company").className = "not-availabel");
 }
+
+function formatDate(dateString) {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  return `Joined ${day} ${month} ${year}`;
+}
+
+document.addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    document.getElementById("submit").click();
+  }
+});
